@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from "react";
+import classes from './App.css';
+
+import MessageList from "./components/messageList";
+import MessageInputForm from "./components/messageInputForm";
+
 
 function App() {
+
+  const [messages, setMessages] = useState([{text:"один два три четыре пять шесть семь восемь девять",
+                                                        userName: "Nathaniel"}])
+
+  const createMessage = (newMessage) => {
+      setMessages([...messages, newMessage]);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <MessageInputForm
+            create={createMessage}
+        />
+      <MessageList messages={messages} userName={"Nathaniel"} />
     </div>
   );
 }

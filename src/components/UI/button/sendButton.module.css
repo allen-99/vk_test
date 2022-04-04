@@ -1,0 +1,9 @@
+.justButton {
+    width: 30px;
+    height: 30px;
+    padding: 5px 5px;
+    margin: 3px;
+    border: 1px solid #d3d9dd;
+    border-radius: 50%;
+
+}

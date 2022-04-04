@@ -1,0 +1,25 @@
+.Message {
+    padding: 10px;
+    border: 2px solid cadetblue;
+    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.MessageTitle {
+    display: flex;
+    width: 100%;
+
+}
+.UserName {
+    font-weight: bold;
+}
+.MessageTime {
+    flex: 1;
+    padding: 0px 0px 0px 10px;
+}
+
+.MessageContent {
+
+}
+
