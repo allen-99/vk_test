@@ -1,9 +1,9 @@
 .myInput {
-    width: 85%;
-
+    width: 91%;
     padding: 5px 15px;
     margin: 5px;
-    border: 3px solid #d3d9dd;
-    border-radius: 6%;
+    border: 1px solid #d3d9dd;
+    border-radius: 0.5rem;
     background: white;
+
 }

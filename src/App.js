@@ -4,24 +4,30 @@ import classes from './App.css';
 import MessageList from "./components/messageList";
 import MessageInputForm from "./components/messageInputForm";
 
-
 function App() {
 
-  const [messages, setMessages] = useState([{text:"один два три четыре пять шесть семь восемь девять",
+    const [messages, setMessages] = useState([{text:"один два три четыре пять шесть семь восемь девять",
                                                         userName: "Nathaniel"}])
 
-  const createMessage = (newMessage) => {
-      setMessages([...messages, newMessage]);
-  }
+    const createMessage = (newMessage) => {
+          if (newMessage.text !== '') {
+              setMessages([...messages, newMessage]);
+          }
 
-  return (
-    <div className="App">
-        <MessageInputForm
-            create={createMessage}
-        />
-      <MessageList messages={messages} userName={"Nathaniel"} />
-    </div>
-  );
-}
+    }
+
+      return (
+        <div className="App">
+            <div className="Chat">
+                    <MessageList messages={messages} userName={"Nathaniel"} />
+                <div className="InputBlock">
+                    <MessageInputForm  className='inputForm'
+                                       create={createMessage}
+                    />
+                </div>
+            </div>
+        </div>
+      );
+    }
 
 export default App;

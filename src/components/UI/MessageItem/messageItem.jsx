@@ -5,7 +5,7 @@ import classes from './messageItem.module.css';
 const MessageItem = (props) => {
     let date = new Date();
     return (
-        <div className="App">
+        <div className="Message">
             <div className={classes.Message}>
                 <div className={classes.MessageTitle}>
                     <div className={classes.UserName}> {props.message.userName} </div>
@@ -13,7 +13,7 @@ const MessageItem = (props) => {
                 </div>
                 <div className={classes.MessageContent}>
                     <div className="MessageText"> {props.message.text} </div>
-                    {/*не забыть заполнить поле сохранения картиночки*/}
+
                     <div className="MessageAttachments">  </div>
                 </div>
 
