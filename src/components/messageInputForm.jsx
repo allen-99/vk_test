@@ -43,6 +43,7 @@ const MessageInputForm = ({create}) => {
         setChoseGif(null);
 
     }
+
     const searchGif = (e) => {
         e.preventDefault();
         const reGif = /\/gif +[ ]*/i;
