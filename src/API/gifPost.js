@@ -15,26 +15,31 @@ function GridDemo({ onGifClick, name}) {
     if (!reGif.exec(ser)) {
         return <div> </div>
     }
+    let searchName = ser.slice(5);
+    if (searchName !== '') {
+        const fetchGifs = (offset: number) =>
+            giphyFetch.search(searchName, { offset, limit: 10 });
+        console.log(searchName)
+        console.log(fetchGifs);
 
-    const fetchGifs = (offset: number) =>
-        giphyFetch.search(ser, { offset, limit: 10 });
+        return (
+            <div className={cl.gifsContainer}  id='scroll'>
+                <Grid
+                    onGifClick={onGifClick}
+                    fetchGifs={fetchGifs}
+                    width={width}
+                    columns={3}
+                    gutter={6}
+                />
+                <ResizeObserver
+                    onResize={({ width }) => {
+                        setWidth(width);
+                    }}
+                />
+            </div>
+        );
+    }
 
-    return (
-        <div className={cl.gifsContainer}  id='scroll'>
-            <Grid
-                onGifClick={onGifClick}
-                fetchGifs={fetchGifs}
-                width={width}
-                columns={3}
-                gutter={6}
-            />
-            <ResizeObserver
-                onResize={({ width }) => {
-                    setWidth(width);
-                }}
-            />
-        </div>
-    );
 }
 
 export {GridDemo};
