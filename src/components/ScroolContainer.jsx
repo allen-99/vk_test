@@ -1,6 +1,14 @@
 import React, { useRef, useCallback } from "react";
 import { useMount } from "react-use";
 import ImageCarousel from "./ImageCarousel";
+import styled from "styled-components";
+
+const Container = styled.div`
+  border: 4px solid blue;
+`;
+const Bottom = styled.div`
+  border: 2px solid yellowgreen;
+`;
 
 
 const ScrollContainer = ({ children, onScroll, onMount }) => {
@@ -22,9 +30,9 @@ const ScrollContainer = ({ children, onScroll, onMount }) => {
     );
 
     return (
-        <ImageCarousel onScroll={handleScroll} ref={containerRef}>
+        <Container onScroll={handleScroll} ref={containerRef}>
             {children}
-        </ImageCarousel>
+        </Container>
     );
 };
 

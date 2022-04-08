@@ -7,14 +7,14 @@ import MessageInputForm from "./components/messageInputForm";
 function App() {
 
     const [messages, setMessages] = useState([{text:"один два три четыре пять шесть семь восемь девять",
-                                                        userName: "Nathaniel"}])
+                                                        userName: "Nathaniel",
+                                                        hours: '12',
+                                                        minutes: '45'}])
 
     const createMessage = (newMessage) => {
-          if (newMessage.text !== '') {
-              setMessages([...messages, newMessage]);
-          }
-
-    }
+        if (newMessage.text !== '' || (newMessage.text === '' && newMessage.gif !== '-')) {
+            setMessages([...messages, newMessage]);
+        }}
 
       return (
         <div className="App">

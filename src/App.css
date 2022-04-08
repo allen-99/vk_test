@@ -54,6 +54,7 @@
 
 .gifs-container {
     height: 210px;
+    width: 100%;
     float: right;
     overflow-x: scroll;
     overflow-y: scroll;
@@ -64,7 +65,10 @@
     height: 100px;
     width: 100px;
     display: inline-block;
-    padding-right: 2px;
-    padding-left: 1px;
-    padding-bottom: 1px;
+}
+
+.chosenGif {
+    height: 40%;
+    width: 40%;
+
 }

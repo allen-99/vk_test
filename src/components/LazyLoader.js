@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import ImageCarousel from "./ImageCarousel";
+import styled from "styled-components";
 
+const Container = styled.div`
+  border: 4px solid blue;
+`;
+const Bottom = styled.div`
+  border: 2px solid yellowgreen;
+`;
 
 
 const LazyLoader = ({
@@ -29,10 +36,10 @@ const LazyLoader = ({
     }, [scrollThreshold, rootBottomMargin, onIntersection]);
 
     return (
-        <ImageCarousel>
+        <Container>
             {children}
-            <div style={'border: 2px solid yellowgreen'} ref={fakeBottomRef} />
-        </ImageCarousel>
+            <Bottom ref={fakeBottomRef} />
+        </Container>
     );
 };
 
