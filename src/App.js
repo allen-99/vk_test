@@ -5,7 +5,7 @@ import "./App.css"
 
 function App() {
 
-    const [messages, setMessages] = useState([{text:"один два три четыре пять шесть семь восемь девять",
+    const [messages, setMessages] = useState([{text:"спасибо что смотрите это, надеюсь я вас не разочарую",
                                                         userName: "Nathaniel",
                                                         hours: '12',
                                                         minutes: '45'}])
