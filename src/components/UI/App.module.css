@@ -2,9 +2,9 @@
 
 
 .gifsContainer {
-    height: 210px;
+    height: 220px;
+    padding-top: 10px;
     width: 100%;
-    float: right;
     overflow-x: scroll;
     overflow-y: scroll;
     background: #fafbfc;

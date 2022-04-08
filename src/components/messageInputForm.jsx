@@ -3,13 +3,15 @@ import InputLine from "./UI/input/inputLine";
 import SendButton from "./UI/button/sendButton";
 import {Gif, Grid} from "@giphy/react-components";
 import {GridDemo} from '../API/gifPost'
-
+import GifItem from './UI/gifItem/gifItem'
 
 
 const MessageInputForm = ({create}) => {
 
     const [text, setText] = useState('');
     const [interval, setInterval] = useState(null);
+    const [modalGif, setModalGif] = useState();
+    const [choseGif, setChoseGif] = useState(null);
 
     const addNewMessage = (e) => {
         e.preventDefault();
@@ -65,22 +67,30 @@ const MessageInputForm = ({create}) => {
         }
     }
 
-    const [modalGif, setModalGif] = useState();
-    const [choseGif, setChoseGif] = useState(null);
-
     const ChoseGif = (e) => {
         e.preventDefault();
         setChoseGif(modalGif);
         setModalGif('')
         setText(' ')
     }
-
+    const remove = (e) => {
+        e.preventDefault();
+        setChoseGif('');
+    }
     return (
         <form className="inputForm">
 
             {/*{result  && <ImageCarousel gifs={result}  schoose={chosenGif}> </ImageCarousel> }*/}
             {choseGif &&
-                <img src={choseGif.images.downsized.url} className='chosenGif'/>}
+                <GifItem src={choseGif.images.downsized.url} className='chosenGif' remove={remove}> </GifItem>}
+
+            <InputLine
+                type="text"
+                placeholder="Напишите сообщение..."
+                value={text}
+                onChange={e => searchGif(e)}
+            />
+            <SendButton onClick={e => addNewMessage(e)} />
             <GridDemo
                 onGifClick={(gif, e) => {
                     e.preventDefault();
@@ -106,18 +116,13 @@ const MessageInputForm = ({create}) => {
                         setModalGif(undefined);
 
                     }}
-                >
+                ><div className="ChosenGifAndButton">
                     <Gif gif={modalGif} width={200} />
-                    <button onClick={ChoseGif}> + </button>
+                    <button onClick={ChoseGif} className="SelectGifButton"> Выбрать </button>
+                </div>
+
                 </div>
             )}
-            <InputLine
-                type="text"
-                placeholder="Напишите сообщение..."
-                value={text}
-                onChange={e => searchGif(e)}
-            />
-            <SendButton onClick={e => addNewMessage(e)} />
         </form>
     );
 };

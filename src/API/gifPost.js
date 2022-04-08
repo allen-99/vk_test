@@ -38,6 +38,26 @@ function GridDemo({ onGifClick, name}) {
                 </div>
             );
         }
+        if (searchName.trim() === ''){
+            const fetchGifs = (offset: number) =>
+                giphyFetch.trending( { offset, limit: 10 });
+            return (
+                <div className={cl.gifsContainer}  id='scroll'>
+                    <Grid
+                        onGifClick={onGifClick}
+                        fetchGifs={fetchGifs}
+                        width={width}
+                        columns={3}
+                        gutter={6}
+                    />
+                    <ResizeObserver
+                        onResize={({ width }) => {
+                            setWidth(width);
+                        }}
+                    />
+                </div>
+            );
+        }
 
 }
 
