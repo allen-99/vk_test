@@ -3,13 +3,11 @@
     width: 50%;
 }
 
-/* Make the image responsive */
 .container img {
     width: 100%;
     height: auto;
 }
 
-/* Style the button and place it in the middle of the container/image */
 .container .btn {
     position: absolute;
     top: 50%;
@@ -27,4 +25,10 @@
 
 .container .btn:hover {
     background-color: rgba(1,1,1,0.8);
+}
+
+.image {
+    height: 20%;
+    width: 20%;
+    display: inline;
 }

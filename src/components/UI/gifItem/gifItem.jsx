@@ -1,10 +1,10 @@
 import React from 'react';
 import cl from "./gifItem.module.css"
 
-const GifItem = ({src, className, remove}) => {
+const GifItem = ({src, remove}) => {
     return (
         <div className={cl.container}>
-            <img src={src} className={className} />
+            <img src={src} className={cl.image} />
                 <button className={cl.btn}  onClick={remove}> Удалить </button>
         </div>
     );
