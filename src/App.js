@@ -1,8 +1,7 @@
 import {useState} from "react";
-import classes from './App.css';
-
 import MessageList from "./components/messageList";
 import MessageInputForm from "./components/messageInputForm";
+import "./App.css"
 
 function App() {
 
@@ -14,6 +13,11 @@ function App() {
     const createMessage = (newMessage) => {
         if (newMessage.text !== '' || (newMessage.text === '' && newMessage.gif !== '-')) {
             setMessages([...messages, newMessage]);
+            setTimeout(() => {
+                const objDiv = document.getElementById("forScroll");
+                objDiv.scrollTop = objDiv.scrollHeight;
+            },300)
+
         }}
 
       return (

@@ -1,75 +1,12 @@
 import React, {useState} from 'react';
 import InputLine from "./UI/input/inputLine";
 import SendButton from "./UI/button/sendButton";
-import {GiphyFetch} from '@giphy/js-fetch-api'
 import {Gif, Grid} from "@giphy/react-components";
-import ResizeObserver from "react-resize-observer";
-import ImageItem from "./ImageItem";
-
-const giphyFetch = new GiphyFetch("sXpGFDGZs0Dv1mmNFvYaGUvYwKX0PWIh");
+import {GridDemo} from '../API/gifPost'
 
 
-// function GridDemo1({ onGifClick, name }) {
-//     const reGif = /\/gif +[ ]*/i;
-//     const [width, setWidth] = useState(window.innerWidth);
-//     if (!reGif.exec(name)) {
-//         return <div> </div>
-//     }
-//     const textSearch = name.slice(5);
-//     let search;
-//     if (textSearch !== ''){ }
-//     return (
-//         <div className='gifs-container'>
-//             <Grid
-//                 onGifClick={onGifClick}
-//                 fetchGifs={search}
-//                 width={width}
-//                 name={textSearch}
-//                 columns={3}
-//                 gutter={6}
-//             />
-//             <ResizeObserver
-//                 onResize={({ width }) => {
-//                     setWidth(width);
-//                 }}
-//             />
-//         </div>
-//     );
-// }
-
-function GridDemo({ onGifClick, name}) {
-
-    let ser = name
-
-    const fetchGifs = (offset: number) =>
-        giphyFetch.search('cat', { offset, limit: 10 });
-
-    const reGif = /\/gif +[ ]*/i;
-    const [width, setWidth] = useState(window.innerWidth);
-    if (!reGif.exec(ser)) {
-        return <div> </div>
-    }
-    console.log(fetchGifs)
-    return (
-        <div className='gifs-container'  id='scroll'>
-            <Grid
-                onGifClick={onGifClick}
-                fetchGifs={fetchGifs}
-                width={width}
-                columns={3}
-                gutter={6}
-            />
-            <ResizeObserver
-                onResize={({ width }) => {
-                    setWidth(width);
-                }}
-            />
-        </div>
-    );
-}
 
 const MessageInputForm = ({create}) => {
-    const reGif = /\/gif[ ]*/i;
 
     const [text, setText] = useState('');
     const [interval, setInterval] = useState(null);
@@ -79,8 +16,8 @@ const MessageInputForm = ({create}) => {
         const date = new Date();
         const hours = date.getHours();
         const minutes = date.getMinutes();
-        console.log(choseGif)
-        if (choseGif != '') {
+
+        if (choseGif != null) {
             const newMessage = {
                 hours,
                 minutes,
@@ -88,8 +25,8 @@ const MessageInputForm = ({create}) => {
                 userName: "Nathaniel",
                 gif: choseGif.images.downsized.url
             }
-            console.log(newMessage)
             create(newMessage);
+            setText('');
         }
         else {
             const newMessage = {
@@ -99,17 +36,16 @@ const MessageInputForm = ({create}) => {
                 userName: "Nathaniel",
                 gif: '-'
             }
-            console.log(newMessage)
             create(newMessage);
             setText('');
         }
 
-        setChoseGif('');
+        setChoseGif(null);
 
     }
     const searchGif = (e) => {
         e.preventDefault();
-
+        const reGif = /\/gif +[ ]*/i;
         setText(e.target.value);
         if (reGif.exec(e.target.value)){
             const textSearch = e.target.value.slice(5);
@@ -118,12 +54,9 @@ const MessageInputForm = ({create}) => {
                     clearInterval(interval);
                     setInterval(null);
                 }
-                // console.log(textSearch);
                 const currentInterval = setTimeout(() => {
-
                 }, 600);
                 setInterval(currentInterval);
-
             }
         }
         else {
@@ -142,13 +75,13 @@ const MessageInputForm = ({create}) => {
     }
 
     return (
-        <form>
+        <form className="inputForm">
+
             {/*{result  && <ImageCarousel gifs={result}  schoose={chosenGif}> </ImageCarousel> }*/}
             {choseGif &&
                 <img src={choseGif.images.downsized.url} className='chosenGif'/>}
             <GridDemo
                 onGifClick={(gif, e) => {
-                    console.log(gif)
                     e.preventDefault();
                     setModalGif(gif);
                 }}
@@ -182,7 +115,6 @@ const MessageInputForm = ({create}) => {
                 placeholder="Напишите сообщение..."
                 value={text}
                 onChange={e => searchGif(e)}
-
             />
             <SendButton onClick={e => addNewMessage(e)} />
         </form>

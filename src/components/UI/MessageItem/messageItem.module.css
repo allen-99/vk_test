@@ -20,8 +20,11 @@
     flex: 1;
     padding: 0px 0px 0px 10px;
 }
-.MessageContent {
 
+.MessageAttachments {
+    padding-top: 10px;
+    height: 40%;
+    width: 40%;
 }
 
 /*.MessageAttachments {*/
